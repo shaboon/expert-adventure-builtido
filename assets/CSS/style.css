@@ -75,6 +75,7 @@ header {
 .btn {
   border: none;
   background-color: hsl(360, 91%, 36%);
+  box-shadow: 0px 5px 0px hsl(0, 88%, 20%);  
   border-radius: 25px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px
     0px;
@@ -88,7 +89,13 @@ header {
   cursor: pointer;
 }
 
-button[disabled] {
+button:active {
+  cursor: default;
+  background: #ff5858;
+  box-shadow: none; 
+}
+
+button {
   cursor: default;
   background: #c0c7cf;
 }
