@@ -1,11 +1,12 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 var passLength = 8;
-var lCase = true;
-var uCase = true;
-var numChar = true;
-var specChar = true;
-var characters = "";
+var lCase = 0;
+var uCase = 0;
+var numChar = 0;
+var specChar = 0;
+var characters = ``;
+var textArea = document.querySelector("#password")
 
 // Method below may not work
 // const numbers = [0,1,2,3,4,5,6,7,8,9]
@@ -25,71 +26,107 @@ console.log;(specChar);
 // Write password to the #password input
 function writePassword() {
   // Mine - I did this
-  passLength = window.prompt("How long would you like your password")
+  passLength = prompt("How long would you like your password")
     if (passLength < 8) {
       console.log(passLength);
-      window.alert("Whoa there buddy, your password has to be greater than 8 characters.");
+      alert("Whoa there buddy, your password has to be greater than 8 characters.");
     } else if (passLength > 128) {
       console.log(passLength);
-      window.alert("Uh...wow...Your password has be less than 128 characters.");  
+      alert("Uh...wow...Your password has be less than 128 characters.");  
     } else {
       console.log(passLength);
-      window.alert("Yessir!");
+      alert("Yessir!");
 
       var password = generatePassword();
       var passwordText = document.querySelector("#password");
 
       passwordText.value = password;
+
+      console.log("I have completely executed writePassword")
     };
 
 
   function generatePassword() {
 
+    // Prompt for LowCase Characters
     if (window.confirm("Would you Like to Use lowercase characters?")) {
-      lCase = true;
-      characters += "abcdefghijklmnopqrstuvwxyz"
+      lCase = 1;
+      characters = `abcdefghijklmnopqrstuvwxyz`
       console.log;(lCase);
-      window.alert("Noted!");
+      alert("Noted!");
     } else {
-      lCase = false;
+      lCase = 0;
       console.log;(lCase);
-      window.alert("Understood!");
+      alert("Understood!");
     };
 
+    // Prompt for UpCase Characters
     if (window.confirm("Would you Like to Use UPPERCASE characters?")) {
-      uCase = true;
-      characters += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+      uCase = 1;
+      characters = `ABCDEFGHIJKLMNOPQRSTUVWXYZ`
       console.log;(uCase);
-      window.alert("Noted!");
+      alert("Noted!");
     } else {
-      uCase = false;
+      uCase = 0;
       console.log;(uCase);
-      window.alert("Understood!");
+      alert("Understood!");
     };
 
+    // Prompt for Numeric Characters
     if (window.confirm("Would you Like to Use numeric characters?")) {
-      numChar = true;
-      characters += "0123456789"
+      numChar = 1;
+      characters = `0123456789`
       console.log;(numChar);
-      window.alert("Noted!");
+      alert("Noted!");
     } else {
-      numChar = false;
+      numChar = 0;
       console.log;(numChar);
-      window.alert("Understood!");
+      alert("Understood!");
     };
 
+    // Prompt for Special Characters
     if (window.confirm("Would you Like to Use special characters?")) {
-      specChar = true;
-      characters += "~!@#$%^&*()_+{}|[]<>,./?"
+      specChar = 1;
+      characters = `~!@#$%^&*()_+{}|[]<>,./?`
       console.log;(specChar);
-      window.alert("Noted!");
+      alert("Noted!");
     } else {
-      specChar = false;
+      specChar = 0;
       console.log;(specChar);
-      window.alert("Understood!");
+      alert("Understood!");
     };
 
-    // console.log("I am about to test booleans");
+      // trouble-shooting log
+      console.log("lCase = " + lCase)
+      console.log("uCase = " + uCase)
+      console.log("numChar = " + numChar)
+      console.log("specChar = " + specChar)
+      // console.log(characters)
+    
+
+      if (lCase + uCase + numChar + specChar == 0) {
+        alert("Sorry, I can't make a password from nothing");
+        return;
+        console.log("Oops...I should've stopped")
+      } else {
+        for (var i = 0; i <= passLength; i++) {
+          var randomNumber = Math.floor(Math.random() * passLength);
+          password += characters.substring(randomNumber, randomNumber +1);
+         };
+      };
+      // if (lCase + uCase + numChar + specChar == 0) {
+      //   alert("Sorry, I can't make a password from nothing")
+      //   return;
+      //   console.log("Oops...I should've stopped")
+      // };
+      
+      // for (var i = 0; i <= passLength; i++) {
+      //   var randomNumber = Math.floor(Math.random() * chars.length);
+      //   password += chars.substring(randomNumber, randomNumber +1);
+      //  }
+
+      // writePassword.password = ()
+      
     
     // if (lCase) {
     //   characters += "abcdefghijklmnopqrstuvwxyz"
@@ -116,8 +153,6 @@ function writePassword() {
     //   console.log;("specChar is false");
     };
 
-    console.log("I should've tested booleans");
-
     // const password = Array.from(Array(26)).map( (_, i) => i + 97)
     // const lowCase = password.map(code => String.fromCharCode(code))
     // console.log(lowCase);
@@ -125,17 +160,19 @@ function writePassword() {
     // console.log(numbers);
     // console.log(symbols);
 
-    for (var i = 0, n = passLength; i < passLength; ++i) {
-      reVal += characters.charAt(Math.floor(Math.random() * n))
-    }
-    return retVal;
+    // for (var i = 0, n = passLength; i < passLength; ++i) {
+    //   reVal += characters.charAt(Math.floor(Math.random() * n))
+    // }
+    // return retVal;
 
-
-    console.log("I have completely executed");
+    console.log("The logged password: " + passLength.password)
+    console.log("I have completely executed generatePassword");
 
   };
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+textArea.textContent = passLength.password
 
 // console.log("Where's the rest of it!")
